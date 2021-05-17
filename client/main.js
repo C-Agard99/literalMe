@@ -1,7 +1,16 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@popperjs/core';
+
 import './main.html';
+import './addBooks.html';
+
+import './main.js';
+import './addbooks.js';
+
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
