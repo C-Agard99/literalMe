@@ -6,26 +6,58 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 
 import './main.html';
+import './view.html';
 
 import './main.js';
+import './view.js';
+import '../lib/collection.js';
 
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+// Template.hello.onCreated(function helloOnCreated() {
+//   // counter starts at 0
+//   this.counter = new ReactiveVar(0);
+// });
+
+// Template.hello.helpers({
+//   counter() {
+//     return Template.instance().counter.get();
+//   },
+// });
+
+// Template.mainBody.events({
+//   'click '(event, instance) {
+//     // increment the counter when button is clicked
+//     instance.counter.set(instance.counter.get() + 1);
+//   },
+// });
+
+Template.mainBody.helpers({
+    newBooks(){
+        return newBooksdb.find();
+    }
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+Template.mainBody.events({
+    'click .js-view'(event){
+        let myID = this._id;
+        
+        newBooksdb.update({_id:myID}, {$inc: {bView: 1}});
+        let viewBooks = this.bView + 1;
+        let bookImg = this.bPic;
+        let bookTitle = this.bTitle;
+        let bookAuthor = this.bAuthor;
+        let bookDescription = this.bDescription;
+        
+        document.getElementById("viewImg").src = bookImg;
+        $('#viewbookTitle').val(bookTitle);
+        $('#viewbookAuthor').val(bookAuthor);
+        $('#timesViewed').html("<h4>Views:&nbsp;</h4>"+viewBooks);
+        $('#viewbookDescription').html("<h4>Description:&nbsp;</h4>"+bookDescription);
+        $('#viewModal').modal('show');
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+        
+    },
+    
 });
 
 Template.addBooks.events({
@@ -41,7 +73,8 @@ Template.addBooks.events({
             "bPic":newbPic,
             "bTitle":newbTitle,
             "bAuthor":newbAuthor,
-            "bDescription":newbDescription
+            "bDescription":newbDescription,
+            "bView":0
         });
         //Clear input boxes
         document.getElementById("bookImg").src = "book_stack.png";
@@ -50,4 +83,4 @@ Template.addBooks.events({
         $('#bookDescription').val("");
         $('#addModal').modal('hide');
     }
-})
+});

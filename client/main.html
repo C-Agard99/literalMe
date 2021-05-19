@@ -7,6 +7,7 @@
     {{> navBar}}
     {{> mainBody}}
     {{> addBooks}}
+    {{> viewBooks}}
     {{> footerBar}}
   </div>
 </body>
@@ -60,60 +61,28 @@
   <main role="main">
     {{> myJumbo}}
     <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-
-            <div class="card mb-4 shadow-sm">
-              <img class="bookCover" src="the_last_apprentice.jpg" alt="Last apprentice">
-              <div class="card-body">
-                <p class="card-text">The Last Apprentice: Revenge of the Witch.</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div> <!-- /col -->
-
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="bookCover" src="a_series_of_unfortunate_events_.jpg" alt="">
-              <div class="card-body">
-                <p class="card-text">A Series of Unfortunate Events: The Penultimate Peril.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div> <!-- /col -->
-          
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="" src="the_wide_window.png" alt="">
-              <div class="card-body">
-                <p class="card-text">A Series of Unfortunate Events: The Wide Window</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div> <!-- /col -->
-
-        </div> <!-- /row for all cards -->
-      </div>
+        <div class="container">
+            <div class="row">
+                {{#each newBooks}}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="bookCover" src={{bPic}} alt="">
+                            <div class="card-body">
+                                <p class="card-text">{{bTitle}}</p>
+                                <p class="card-text">{{bView}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary js-view">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /col -->
+                {{/each}}          
+            </div> <!-- /row for all cards -->
+        </div>
     </div>
         
   </main>
@@ -140,7 +109,11 @@
                 <div class="modal-body">
                     <div class="newBook">
                         <div class="coverImg text-center">
-                            <img id="bookImg" src="book_stack.png" alt="">
+                            <img id="displayImg" src="book_stack.png" alt="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="bPicLabel">Image Path</span>
+                            <input type="text" class="form-control" id="bookImg" placeholder="Path to imge" aria-label="Book Cover" aria-describedby="bPicLabel">
                         </div>
                                                
                         <div class="input-group mb-3">
