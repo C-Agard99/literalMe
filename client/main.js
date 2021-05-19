@@ -6,10 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 
 import './main.html';
-import './addBooks.html';
 
 import './main.js';
-import './addbooks.js';
 
 
 Template.hello.onCreated(function helloOnCreated() {
@@ -29,3 +27,27 @@ Template.hello.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+
+Template.addBooks.events({
+    'click .js-save'(event){
+        //pulls data from the add books html page
+        let newbPic = $('#bookImg').val();
+        let newbTitle = $('#bookTitle').val();
+        let newbAuthor = $('#bookAuthor').val();
+        let newbDescription = $('#bookDescription').val();
+        
+        //save data into collection
+        newBooksdb.insert({
+            "bPic":newbPic,
+            "bTitle":newbTitle,
+            "bAuthor":newbAuthor,
+            "bDescription":newbDescription
+        });
+        //Clear input boxes
+        document.getElementById("bookImg").src = "book_stack.png";
+        $('#bookTitle').val("");
+        $('#bookAuthor').val("");
+        $('#bookDescription').val("");
+        $('#addModal').modal('hide');
+    }
+})

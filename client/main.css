@@ -6,3 +6,8 @@ body {
 .bookCover{
     width: 300px;
 }
+
+.coverImg img{
+    width: 300px;
+    height: 350px;
+}
