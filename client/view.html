@@ -14,24 +14,19 @@
                         </div>
                         <p id="timesViewed">Views</p>
                         
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="btitleLabel">Book Title</span>
-                            <input type="text" class="form-control" id="viewbookTitle" placeholder="Book Title" aria-label="Book title" aria-describedby="btitleLabel">
-                        </div>
+                        <p id="viewbookTitle">Title</p>
 
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="bauthorLabel">Author</span>
-                            <input type="text" class="form-control" id="viewbookAuthor" placeholder="Book Author" aria-label="Book author" aria-describedby="bauthorLabel">
-                        </div>
+                        <p id="viewbookAuthor">Author</p>
 
                         <p id="viewbookDescription">Description</p>                 
                    </div>
                 </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger js-delete" data-bs-dismiss="modal">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <!-- <button type="button" class="btn btn-primary js-save" >Save changes</button> -->
                     </div>
             </div>
         </div>
     </div>
+    {{> confirmDel}}
 </template>

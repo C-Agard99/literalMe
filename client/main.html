@@ -8,6 +8,8 @@
     {{> mainBody}}
     {{> addBooks}}
     {{> viewBooks}}
+    {{> confirmDel}}
+    {{> editBooks}}
     {{> footerBar}}
   </div>
 </body>
@@ -73,7 +75,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary js-view">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary js-edit">Edit</button>
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
@@ -118,7 +120,7 @@
                                                
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="btitleLabel">Book Title</span>
-                            <input type="text" class="form-control" id="bookTitle" placeholder="Book Title" aria-label="Book title" aria-describedby="btitleLabel">
+                            <input type="text" class="form-control" id="bookTitle" placeholder="Book Title" aria-label="Book title" aria-describedby="bTitleLabel">
                         </div>
 
                         <div class="input-group mb-3">

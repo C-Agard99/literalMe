@@ -7,29 +7,15 @@ import '@popperjs/core';
 
 import './main.html';
 import './view.html';
+import './confirmDel.html';
+import './editBooks.html';
 
 import './main.js';
 import './view.js';
+import './confirmDel.js';
+import './editBooks.js';
 import '../lib/collection.js';
 
-
-// Template.hello.onCreated(function helloOnCreated() {
-//   // counter starts at 0
-//   this.counter = new ReactiveVar(0);
-// });
-
-// Template.hello.helpers({
-//   counter() {
-//     return Template.instance().counter.get();
-//   },
-// });
-
-// Template.mainBody.events({
-//   'click '(event, instance) {
-//     // increment the counter when button is clicked
-//     instance.counter.set(instance.counter.get() + 1);
-//   },
-// });
 
 Template.mainBody.helpers({
     newBooks(){
@@ -40,7 +26,6 @@ Template.mainBody.helpers({
 Template.mainBody.events({
     'click .js-view'(event){
         let myID = this._id;
-        
         newBooksdb.update({_id:myID}, {$inc: {bView: 1}});
         let viewBooks = this.bView + 1;
         let bookImg = this.bPic;
@@ -49,15 +34,27 @@ Template.mainBody.events({
         let bookDescription = this.bDescription;
         
         document.getElementById("viewImg").src = bookImg;
-        $('#viewbookTitle').val(bookTitle);
-        $('#viewbookAuthor').val(bookAuthor);
+        $('#viewbookTitle').html("<h4>Title:&nbsp;</h4>"+bookTitle);
+        $('#viewbookAuthor').html("<h4>Author:&nbsp;</h4>"+bookAuthor);
         $('#timesViewed').html("<h4>Views:&nbsp;</h4>"+viewBooks);
         $('#viewbookDescription').html("<h4>Description:&nbsp;</h4>"+bookDescription);
         $('#viewModal').modal('show');
-
-        
     },
-    
+    'click .js-edit'(event){ 
+        let myID = this._id; 
+        $("#editID").val(myID);
+        let editImg = this.bPic;    
+        let editbTitle = this.bTitle;
+        let editbAuthor = this.bAuthor;
+        let editbDescription = this.bDescription;
+        document.getElementById("editdisplayImg").src = editImg;
+        $('#editImg').val(editImg);
+        $('#editTitle').val(editbTitle);
+        $('#editAuthor').val(editbAuthor);
+        $('#editDescription').val(editbDescription);
+        $('#editModal').modal('show');
+        
+    }    
 });
 
 Template.addBooks.events({
