@@ -26,6 +26,8 @@ Template.mainBody.helpers({
 Template.mainBody.events({
     'click .js-view'(event){
         let myID = this._id;
+        $("#deleteID").val(myID);
+        $("#confirmID").val(myID);
         newBooksdb.update({_id:myID}, {$inc: {bView: 1}});
         let viewBooks = this.bView + 1;
         let bookImg = this.bPic;

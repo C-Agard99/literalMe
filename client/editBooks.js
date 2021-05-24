@@ -1,5 +1,5 @@
 Template.editBooks.events({
-    'click .js-saveEdit'(events){
+    'click .js-saveEdit'(event){
         let editID = $("#editID").val();
         let editImg = $('#editImg').val();
         let editbTitle = $('#editTitle').val();

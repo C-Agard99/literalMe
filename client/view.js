@@ -1,7 +1,7 @@
 Template.viewBooks.events({
     'click .js-delete'(event){
-        let myID = this._id;
-        $('#confirmID').val(myID);
+        let myID = $("#deleteID").val();
+
         $('#deleteModal').modal('show');
     }
 });
